@@ -112,40 +112,42 @@ import streamlit as st
 import openai
 from pinecone import Pinecone, ServerlessSpec
 from PyPDF2 import PdfReader
+import subprocess
+import sys
 
-   # Function to install required packagesdefinstall_packages():
+# Function to install required packages
 def install_packages():
     required_packages = [
-    "langchain",
-    "pinecone-client",
-    "langchain-community",
-    "langchain-openai",
-    "langchain-pinecone",
-    "python-dotenv",
-    "pypdf",
-    "PyPDF2",
-    "pinecone-client"
-        ]
+        "langchain",
+        "pinecone-client",
+        "langchain-community",
+        "langchain-openai",
+        "langchain-pinecone",
+        "python-dotenv",
+        "pypdf",
+        "PyPDF2",
+        "pinecone-client"
+    ]
     for package in required_packages:
-    try:
-        __import__(package.split("-")[0])  # Import the package to check if it exists
-    except ImportError:
-        subprocess.check_call([sys.executable, "-m", "pip", "install", package])
- 
-    # # Ensure necessary libraries are installed
+        try:
+            __import__(package.split("-")[0])  # Import the package to check if it exists
+        except ImportError:
+            subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+
+# Ensure necessary libraries are installed
 install_packages()
 
 # Access API keys securely from Streamlit secrets
 openai_api_key = st.secrets["OPENAI_API_KEY"]
 pinecone_api_key = st.secrets["PINECONE_API_KEY"]
 pinecone_env = st.secrets["PINECONE_ENV"]
- 
+
 # Initialize OpenAI API
 openai.api_key = openai_api_key
- 
+
 # Initialize Pinecone API
 pc = Pinecone(api_key=pinecone_api_key)
- 
+
 # Define index name and specifications
 index_name = "langchain"
 if index_name not in pc.list_indexes().names():
@@ -158,37 +160,37 @@ if index_name not in pc.list_indexes().names():
             region=pinecone_env
         )
     )
- 
+
 # Connect to the index
 index = pc.Index(name=index_name)
- 
+
 # Streamlit App
 st.title("Resume Screening Tool")
 st.write("Upload resumes, extract key information, and evaluate candidates.")
- 
+
 # File uploader for PDF
 uploaded_file = st.file_uploader("Upload a PDF file", type=["pdf"])
- 
+
 if uploaded_file:
     # Extract text from PDF
     pdf_reader = PdfReader(uploaded_file)
     pdf_text = ""
     for page in pdf_reader.pages:
         pdf_text += page.extract_text()
- 
+
     # Display the extracted text
     st.write("Extracted PDF Content:")
     st.text_area("PDF Content", pdf_text, height=200)
- 
+
     # Generate embeddings for the PDF content and store in Pinecone
     if st.button("Process PDF"):
         st.write("Clearing old data and processing the PDF...")
         index.delete(delete_all=True)
- 
+
         # Split PDF text into chunks to fit embedding token limits
         chunk_size = 800
         chunks = [pdf_text[i:i+chunk_size] for i in range(0, len(pdf_text), chunk_size)]
- 
+
         for idx, chunk in enumerate(chunks):
             response = openai.Embedding.create(
                 input=[chunk],
@@ -199,9 +201,9 @@ if uploaded_file:
                 {"id": f"doc_chunk_{idx}", "values": embedding, "metadata": {"text": chunk}}
             ])
         st.success("PDF content processed and stored in Pinecone.")
- 
+
 query = st.text_input("Enter your query:")
- 
+
 if st.button("Evaluate Candidate"):
     if query:
         response = openai.Embedding.create(
@@ -209,15 +211,15 @@ if st.button("Evaluate Candidate"):
             model="text-embedding-ada-002"
         )
         query_embedding = response['data'][0]['embedding']
- 
+
         query_result = index.query(
             vector=query_embedding,
             top_k=5,
             include_metadata=True
         )
- 
+
         context = "\n\n".join([match['metadata'].get('text', '') for match in query_result['matches']])
- 
+
         response = openai.ChatCompletion.create(
             model="gpt-4",
             messages=[
@@ -227,7 +229,7 @@ if st.button("Evaluate Candidate"):
             max_tokens=300,
             temperature=0.5
         )
- 
+
         st.write(f"Your query: {query}")
         st.write("Response:")
         st.write(response['choices'][0]['message']['content'].strip())
