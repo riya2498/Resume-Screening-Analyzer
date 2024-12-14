@@ -112,7 +112,29 @@ import streamlit as st
 import openai
 from pinecone import Pinecone, ServerlessSpec
 from PyPDF2 import PdfReader
+
+   # Function to install required packagesdefinstall_packages():
+def install_packages():
+    required_packages = [
+    "langchain",
+    "pinecone-client",
+    "langchain-community",
+    "langchain-openai",
+    "langchain-pinecone",
+    "python-dotenv",
+    "pypdf",
+    "PyPDF2",
+    "pinecone-client"
+        ]
+    for package in required_packages:
+        try:
+                    subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+        except subprocess.CalledProcessError:
+                    st.error(f"Failed to install {package}. Please install it manually.")
  
+    # # Ensure necessary libraries are installed
+install_packages()
+
 # Access API keys securely from Streamlit secrets
 openai_api_key = st.secrets["OPENAI_API_KEY"]
 pinecone_api_key = st.secrets["PINECONE_API_KEY"]
