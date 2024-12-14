@@ -127,10 +127,10 @@ def install_packages():
     "pinecone-client"
         ]
     for package in required_packages:
-        try:
-                    subprocess.check_call([sys.executable, "-m", "pip", "install", package])
-        except subprocess.CalledProcessError:
-                    st.error(f"Failed to install {package}. Please install it manually.")
+    try:
+        __import__(package.split("-")[0])  # Import the package to check if it exists
+    except ImportError:
+        subprocess.check_call([sys.executable, "-m", "pip", "install", package])
  
     # # Ensure necessary libraries are installed
 install_packages()
