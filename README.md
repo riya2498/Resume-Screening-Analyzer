@@ -42,25 +42,23 @@ Finding the perfect candidate from a pile of resumes is **time-consuming** and *
 ```bash
 git clone https://github.com/your-username/resume-screening-ai.git
 cd resume-screening-ai
+
 2️⃣ Install dependencies:
 
-bash
-Copy
-Edit
+```bash
 pip install -r requirements.txt
-3️⃣ Set up API keys for OpenAI & Pinecone in a .env file:
 
-bash
-Copy
-Edit
+3️⃣ Set up API keys for OpenAI & Pinecone in a .env file:
+```bash
 OPENAI_API_KEY=your-key-here
 PINECONE_API_KEY=your-key-here
+
 4️⃣ Run the Streamlit app:
 
-bash
-Copy
-Edit
+```bash
 streamlit run app.py
+
+
 🎯 How It Works
 1️⃣ Upload Resumes 📄 → Upload PDF resumes through the Streamlit interface
 2️⃣ Extract & Process 🔍 → The system extracts text & converts it into embeddings
