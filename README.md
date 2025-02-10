@@ -64,26 +64,32 @@ streamlit run app.py
 
 
 🎯 How It Works
+
 1️⃣ Upload Resumes 📄 → Upload PDF resumes through the Streamlit interface
 2️⃣ Extract & Process 🔍 → The system extracts text & converts it into embeddings
 3️⃣ Semantic Search 🚀 → Query resumes using LLM-powered matching
 4️⃣ Retrieve Top Candidates ✅ → Ranked results are displayed for recruiter review
 
 📊 Use Cases
+
 🔹 HR & Recruitment: Automate and optimize resume screening
 🔹 Education & Scholarships: Match applicants with relevant programs
 🔹 Legal & Compliance: Retrieve legal documents based on queries
 
 🏆 Why This Matters
+
 ✅ Saves 70%+ of manual screening time
 ✅ Improves accuracy by 40% using vector search
 ✅ Bias-free AI-powered candidate recommendations
 
 🤝 Contributing
+
 We welcome contributions! Open an issue or submit a pull request to improve the project.
 
 📜 License
+
 This project is licensed under the MIT License.
 
 📬 Connect With Us
+
 🔗 [LinkedIn](https://www.linkedin.com/in/riya-chaddha-73321a145) | 🌐 [Website](https://github.com/riya2498)
