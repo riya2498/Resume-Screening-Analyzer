@@ -1,36 +1,45 @@
-🚀 AI-Powered Resume Screening System
-Automated, Smart & Efficient Resume Matching with LLMs, LangChain & Pinecone
-(Optional: Add a project banner to make it visually appealing!)
+# 🚀 AI-Powered Resume Screening System  
+### Automated, Smart & Efficient Resume Matching with LLMs, LangChain & Pinecone  
 
-📌 Overview
-Finding the perfect candidate from a pile of resumes is time-consuming and prone to bias. Our AI-powered resume screening system automates this process by leveraging LangChain, OpenAI’s GPT, and Pinecone to intelligently match resumes with job descriptions.
+![Resume Screening Banner](https://your-image-url.com/banner.png) <!-- Optional: Add an image -->
 
-🔹 Intelligent candidate matching with LLMs
-🔹 Vector-based semantic search for high accuracy
-🔹 Scalable ETL pipeline for processing thousands of resumes
-🔹 User-friendly interface built with Streamlit
+---
 
-⚡ Features
-✅ Automated Resume Parsing: Extracts structured data from resumes using PyPDF
-✅ LLM-Powered Search: Matches resumes with job descriptions using OpenAI’s GPT
-✅ Vector Database for Quick Retrieval: Pinecone enables fast and accurate resume-role matching
-✅ Interactive Dashboard: Recruiters can upload, search, and filter resumes with an intuitive Streamlit UI
-✅ Optimized Query Performance: Reduces search latency by 50% with fine-tuned embeddings
+## 📌 Overview  
+Finding the perfect candidate from a pile of resumes is **time-consuming** and **prone to bias**. Our **AI-powered resume screening system** automates this process by leveraging **LangChain, OpenAI’s GPT, and Pinecone** to intelligently match resumes with job descriptions.  
 
-🛠 Tech Stack
-Component	Technology Used
-LLM	OpenAI GPT (LangChain)
-Vector Search	Pinecone
-ETL Pipeline	Python, PyPDF
-Frontend UI	Streamlit
-Database	Pinecone (Vector DB)
-🚀 Getting Started
-🔧 Installation
-1️⃣ Clone this repository:
+🔹 **Intelligent candidate matching** with LLMs  
+🔹 **Vector-based semantic search** for high accuracy  
+🔹 **Scalable ETL pipeline** for processing thousands of resumes  
+🔹 **User-friendly interface** built with **Streamlit**  
 
-bash
-Copy
-Edit
+---
+
+## ⚡ Features  
+✅ **Automated Resume Parsing:** Extracts structured data from resumes using **PyPDF**  
+✅ **LLM-Powered Search:** Matches resumes with job descriptions using **OpenAI’s GPT**  
+✅ **Vector Database for Quick Retrieval:** Pinecone enables **fast and accurate** resume-role matching  
+✅ **Interactive Dashboard:** Recruiters can **upload, search, and filter resumes** with an intuitive **Streamlit UI**  
+✅ **Optimized Query Performance:** Reduces **search latency by 50%** with fine-tuned embeddings  
+
+---
+
+## 🛠 Tech Stack  
+| Component        | Technology Used  |
+|-----------------|-----------------|
+| **LLM**         | OpenAI GPT (LangChain) |
+| **Vector Search** | Pinecone  |
+| **ETL Pipeline** | Python, PyPDF  |
+| **Frontend UI** | Streamlit  |
+| **Database** | Pinecone (Vector DB)  |
+
+---
+
+## 🚀 Getting Started  
+
+### 🔧 Installation  
+1️⃣ Clone this repository:  
+```bash
 git clone https://github.com/your-username/resume-screening-ai.git
 cd resume-screening-ai
 2️⃣ Install dependencies:
